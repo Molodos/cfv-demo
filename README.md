@@ -13,7 +13,7 @@ head -c 1M /dev/urandom > random.bin
 
 #### Entropie
 
-![Entropie Zufall](docs/entropy_graphs/entropy_random.png)
+![Entropie Zufall](docs/entropy_graphs_overall/random.png)
 
 ### Generierung von UTF-8-Text (Lorem Ipsum)
 
@@ -22,7 +22,7 @@ sich Output befüllt) und Download des Ergebnisses als Datei
 
 #### Entropie
 
-![Entropie Lorem Ipsum](docs/entropy_graphs/entropy_lorem_ipsum.png)
+![Entropie Lorem Ipsum](docs/entropy_graphs_overall/lorem_ipsum.png)
 
 ### Komprimierte Dateien
 
@@ -36,8 +36,8 @@ sich Output befüllt) und Download des Ergebnisses als Datei
 
 #### Entropie komprimiert
 
-![Entropie komprimiert](docs/entropy_graphs/entropy_compressed.png)
+![Entropie komprimiert](docs/entropy_graphs_overall/compressed.png)
 
 #### Entropie komprimiert und verschlüsselt
 
-![Entropie komprimiert und verschlüsselt](docs/entropy_graphs/entropy_compressed_encrypted.png)
+![Entropie komprimiert und verschlüsselt](docs/entropy_graphs_overall/compressed_encrypted.png)
