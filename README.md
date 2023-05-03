@@ -41,6 +41,14 @@ sich Output befüllt) und Download des Ergebnisses als Datei
 
 ![Entropie komprimiert und verschlüsselt](docs/entropy_graphs_overall/compressed_encrypted.png)
 
+### Ausführbare Dateien
+
+Nutzung der Sysinternals Process Explorer exe (Version 16.43)
+
+#### Entropie
+
+![Entropie Sysinternals Process Explorer](docs/entropy_graphs_overall/procexp.png)
+
 ## Berechnung der Entropie
 
 1) Analyse der Datei (oder von Blöcken dieser) Byte für Byte

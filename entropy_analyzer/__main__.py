@@ -8,12 +8,24 @@ from entropy_analyzer.file_entropy_calculator import FileEntropyCalculator
 
 demo_data_dir: str = path.join(path.dirname(path.realpath(__file__)), "..", "demo_data")
 
+
+def show_overall_entropy(file_name: str):
+    entropy_block: EntropyBlock = FileEntropyCalculator.calculate_overall_entropy(
+        file_path=path.join(demo_data_dir, file_name))
+    EntropyVisualizer.visualize_single_block(entropy_block)
+
+
+def show_entropy_blocks(file_name: str):
+    entropy_blocks: list[EntropyBlock] = FileEntropyCalculator.calculate_blocked_entropy(
+        file_path=path.join(demo_data_dir, file_name), block_size=4096)
+    EntropyVisualizer.visualize_multiple_blocks(entropy_blocks)
+
+
 if __name__ == "__main__":
     """
     Entry point of the script
     """
-    file_names: list[str] = ["random.bin", "lorem_ipsum.txt", "compressed.zip", "compressed_encrypted.zip"]
-    for file_name in file_names:
-        entropy_blocks: list[EntropyBlock] = FileEntropyCalculator.calculate_blocked_entropy(
-            file_path=path.join(demo_data_dir, file_name), block_size=4096)
-        EntropyVisualizer.visualize_multiple_blocks(entropy_blocks)
+    file_names: list[str] = ["random.bin", "lorem_ipsum.txt", "procexp.exe"]
+    for f in file_names:
+        # show_overall_entropy(f)
+        show_entropy_blocks(f)
