@@ -13,6 +13,7 @@ class EntropyBlock:
             reference_name: Name of the thing that is analyzed
         """
         self.reference_name: str = reference_name
+        self.size: int = 0
 
         # Initialize byte counter
         self.byte_counter: dict[bytes, int] = {}
@@ -26,6 +27,7 @@ class EntropyBlock:
             byte: The byte to be processed
         """
         self.byte_counter[byte] = self.byte_counter.get(byte, 0) + 1
+        self.size += 1
 
     def get_key_ints(self) -> list[int]:
         """
