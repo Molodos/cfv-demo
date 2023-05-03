@@ -25,7 +25,8 @@ class EntropyVisualizer:
         ax.bar(entropy_block.get_key_ints(), entropy_block.get_value_counts(), edgecolor="white", linewidth=0.1)
 
         # Formatting
-        ax.set_title(f"Entropy of '{entropy_block.reference_name}'")
+        ax.set_title(
+            f"Entropy of '{entropy_block.reference_name}': {round(entropy_block.calculate_standardized_entropy(), 10)}")
         ax.set_xlabel("Byte (as int)")
         ax.set_ylabel("Count")
 

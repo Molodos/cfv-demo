@@ -1,5 +1,7 @@
 __author__ = "Michael Weichenrieder"
 
+import math
+
 
 class EntropyBlock:
     """
@@ -42,3 +44,13 @@ class EntropyBlock:
         Returns: All byte counts
         """
         return list(self.byte_counter.values())
+
+    def calculate_standardized_entropy(self) -> float:
+        """
+        Calculate the standardized (0-1) entropy
+        Returns: The standardized entropy
+        """
+        relative_frequencies: [float] = [count / self.size for count in self.byte_counter.values()]
+        entropy: float = -sum([freq * math.log2(freq) for freq in relative_frequencies if freq != 0])
+        standardized_entropy: float = entropy / math.log2(len(relative_frequencies))
+        return standardized_entropy
