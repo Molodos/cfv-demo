@@ -30,13 +30,13 @@ class FileEntropyCalculator:
         Returns: A list of EntropyBlock objects containing the results
         """
         file_name: str = file_path.split(path.sep)[-1]
-        entropy_blocks: list[EntropyBlock] = [EntropyBlock(reference_name=file_name)]
+        entropy_blocks: list[EntropyBlock] = [EntropyBlock(reference_name=file_name, block_number=0)]
         with open(file_path, "rb") as f:
             while True:
                 b: bytes = f.read(1)
                 if not b:
                     break
                 if block_size != -1 and entropy_blocks[-1].size >= block_size:
-                    entropy_blocks.append(EntropyBlock(reference_name=file_name))
+                    entropy_blocks.append(EntropyBlock(reference_name=file_name, block_number=len(entropy_blocks)))
                 entropy_blocks[-1].process_byte(byte=b)
         return entropy_blocks

@@ -8,13 +8,15 @@ class EntropyBlock:
     Model for managing entropy data for bytes
     """
 
-    def __init__(self, reference_name: str):
+    def __init__(self, reference_name: str, block_number: int = 0):
         """
         Constructor
         Args:
             reference_name: Name of the thing that is analyzed
+            block_number: Number of the block
         """
         self.reference_name: str = reference_name
+        self.block_number: int = block_number
         self.size: int = 0
 
         # Initialize byte counter
