@@ -2,7 +2,7 @@ __author__ = "Michael Weichenrieder"
 
 from os import path
 
-from entropy_analyzer.entropy_processor import EntropyProcessor
+from entropy_analyzer.entropy_processor import EntropyBlock
 
 
 class FileEntropyCalculator:
@@ -11,18 +11,18 @@ class FileEntropyCalculator:
     """
 
     @classmethod
-    def calculate_entropy(cls, file_path: str) -> EntropyProcessor:
+    def calculate_overall_entropy(cls, file_path: str) -> EntropyBlock:
         """
-        Calculates the entropy of a file
+        Calculates the overall entropy of a file
         Args:
             file_path: The path of the file to analyze
-        Returns: The EntropyProcessor object containing the results
+        Returns: The EntropyBlock object containing the results
         """
-        entropy_data: EntropyProcessor = EntropyProcessor(reference_name=file_path.split(path.sep)[-1])
+        entropy_data: EntropyBlock = EntropyBlock(reference_name=file_path.split(path.sep)[-1])
         with open(file_path, "rb") as f:
             while True:
                 b: bytes = f.read(1)
-                if b == b"":
+                if not b:
                     break
                 entropy_data.process_byte(byte=b)
         return entropy_data

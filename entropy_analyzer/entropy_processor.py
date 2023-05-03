@@ -1,9 +1,9 @@
 __author__ = "Michael Weichenrieder"
 
 
-class EntropyProcessor:
+class EntropyBlock:
     """
-    Model for managing entropy data for a file
+    Model for managing entropy data for bytes
     """
 
     def __init__(self, reference_name: str):
