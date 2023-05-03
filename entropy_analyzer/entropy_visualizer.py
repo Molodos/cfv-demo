@@ -17,8 +17,11 @@ class EntropyVisualizer:
         Args:
             entropy_processor: The processor to take results from
         """
-        # Add data
+        # Init plot
         fig, ax = plt.subplots()
+        fig.canvas.manager.set_window_title("Entropy analysis results")
+
+        # Add data
         ax.bar(entropy_processor.get_key_ints(), entropy_processor.get_value_counts(), edgecolor="white", linewidth=0.1)
 
         # Formatting

@@ -12,7 +12,8 @@ if __name__ == "__main__":
     """
     Entry point of the script
     """
-    file_name: str = "lorem_ipsum.txt"
-    entropy_data: EntropyProcessor = FileEntropyCalculator.calculate_entropy(
-        file_path=path.join(demo_data_dir, file_name))
-    EntropyVisualizer.visualize(entropy_data)
+    file_names: list[str] = ["random.bin", "lorem_ipsum.txt", "compressed.zip", "compressed_encrypted.zip"]
+    for file_name in file_names:
+        entropy_data: EntropyProcessor = FileEntropyCalculator.calculate_entropy(
+            file_path=path.join(demo_data_dir, file_name))
+        EntropyVisualizer.visualize(entropy_data)
