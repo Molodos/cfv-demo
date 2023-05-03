@@ -14,6 +14,6 @@ if __name__ == "__main__":
     """
     file_names: list[str] = ["random.bin", "lorem_ipsum.txt", "compressed.zip", "compressed_encrypted.zip"]
     for file_name in file_names:
-        entropy_block: EntropyBlock = FileEntropyCalculator.calculate_overall_entropy(
-            file_path=path.join(demo_data_dir, file_name))
-        EntropyVisualizer.visualize_single_block(entropy_block)
+        entropy_blocks: list[EntropyBlock] = FileEntropyCalculator.calculate_blocked_entropy(
+            file_path=path.join(demo_data_dir, file_name), block_size=4096)
+        EntropyVisualizer.visualize_multiple_blocks(entropy_blocks)
