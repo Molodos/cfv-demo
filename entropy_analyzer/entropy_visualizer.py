@@ -1,19 +1,28 @@
+__author__ = "Michael Weichenrieder"
+
 import matplotlib.pyplot as plt
 
-from entropy_analyzer.entropy_data import EntropyData
+from entropy_analyzer.entropy_processor import EntropyProcessor
 
 
 class EntropyVisualizer:
+    """
+    Visualizer to display entropy analysis results using matplotlib
+    """
 
     @classmethod
-    def visualize(cls, entropy_data: EntropyData) -> None:
+    def visualize(cls, entropy_processor: EntropyProcessor) -> None:
+        """
+        Visualizes the results of an EntropyProcessor
+        Args:
+            entropy_processor: The processor to take results from
+        """
         # Add data
         fig, ax = plt.subplots()
-        ax.bar(entropy_data.get_key_ints(), entropy_data.get_value_counts(), edgecolor="white", linewidth=0.1)
+        ax.bar(entropy_processor.get_key_ints(), entropy_processor.get_value_counts(), edgecolor="white", linewidth=0.1)
 
         # Formatting
-        ax.set_xlim(0, 255)
-        ax.set_title(f"Entropy of '{entropy_data.file_name}'")
+        ax.set_title(f"Entropy of '{entropy_processor.reference_name}'")
         ax.set_xlabel("Byte (as int)")
         ax.set_ylabel("Count")
 
