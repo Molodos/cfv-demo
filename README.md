@@ -27,12 +27,11 @@ sich Output befüllt) und Download des Ergebnisses als Datei
 ### Komprimierte Dateien
 
 - `compressed.zip`
-  - Wörterbuchgröße: 32kB (default)
-  - Kein Passwort
+    - Wörterbuchgröße: 32kB (default)
+    - Kein Passwort
 - `compressed_encrypted.zip`
-  - Wörterbuchgröße: 32kB (default)
-  - Passwortgeschützt mit Passwort "password"
-
+    - Wörterbuchgröße: 32kB (default)
+    - Passwortgeschützt mit Passwort "password"
 
 #### Entropie komprimiert
 
@@ -41,3 +40,9 @@ sich Output befüllt) und Download des Ergebnisses als Datei
 #### Entropie komprimiert und verschlüsselt
 
 ![Entropie komprimiert und verschlüsselt](docs/entropy_graphs_overall/compressed_encrypted.png)
+
+## Berechnung der Entropie
+
+1) Analyse der Datei (oder von Blöcken dieser) Byte für Byte
+2) Zählen der Vorkommnisse aller möglichen Bytes
+3) [Berechnung der Entropie](https://welt-der-bwl.de/Entropie)
