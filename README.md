@@ -3,54 +3,6 @@
 Demos zur Studienarbeit mit dem Thema "Vergleich und Analyse von Kompressionsalgorithmen und deren
 Verschlüsselungsmethoden im Bezug auf die forensische Untersuchung"
 
-## Demo Daten
+## [Demo Daten](./docs/demo_data.md)
 
-### Generierung von zufälligen binären Daten
-
-```shell
-head -c 1M /dev/urandom > random.bin
-```
-
-#### Entropie
-
-![Entropie Zufall](docs/entropy_graphs_overall/random.png)
-
-### Generierung von UTF-8-Text (Lorem Ipsum)
-
-Nutzung von [CyberChef](https://gchq.github.io/CyberChef/#recipe=Generate_Lorem_Ipsum(1048576,'Bytes')) (lädt kurz, bis
-sich Output befüllt) und Download des Ergebnisses als Datei
-
-#### Entropie
-
-![Entropie Lorem Ipsum](docs/entropy_graphs_overall/lorem_ipsum.png)
-
-### Komprimierte Dateien
-
-- `compressed.zip`
-    - Wörterbuchgröße: 32kB (default)
-    - Kein Passwort
-- `compressed_encrypted.zip`
-    - Wörterbuchgröße: 32kB (default)
-    - Passwortgeschützt mit Passwort "password"
-
-#### Entropie komprimiert
-
-![Entropie komprimiert](docs/entropy_graphs_overall/compressed.png)
-
-#### Entropie komprimiert und verschlüsselt
-
-![Entropie komprimiert und verschlüsselt](docs/entropy_graphs_overall/compressed_encrypted.png)
-
-### Ausführbare Dateien
-
-Nutzung der Sysinternals Process Explorer exe (Version 16.43)
-
-#### Entropie
-
-![Entropie Sysinternals Process Explorer](docs/entropy_graphs_overall/procexp.png)
-
-## Berechnung der Entropie
-
-1) Analyse der Datei (oder von Blöcken dieser) Byte für Byte
-2) Zählen der Vorkommnisse aller möglichen Bytes
-3) [Berechnung der Entropie](https://welt-der-bwl.de/Entropie)
+## [Entropie Analysen](./docs/entropy_analysis.md)

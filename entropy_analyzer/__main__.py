@@ -25,7 +25,8 @@ if __name__ == "__main__":
     """
     Entry point of the script
     """
-    file_names: list[str] = ["random.bin", "lorem_ipsum.txt", "procexp.exe"]
-    for f in file_names:
-        # show_overall_entropy(f)
-        show_entropy_blocks(f)
+    base_files: list[str] = ["binary.exe", "random.bin", "utf8.txt"]
+    zip_names: list[str] = ["compressed.zip", "compressed_encrypted.zip", "compressed_encrypted_old.zip"]
+    for f in base_files + zip_names:
+        show_overall_entropy(f)
+        # show_entropy_blocks(f)
