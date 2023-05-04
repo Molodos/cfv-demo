@@ -37,7 +37,28 @@
 
 ![Entropie verschlüsseltes ZIP (Alt)](entropy_graphs_overall/zip_compressed_encrypted_old.png)
 
-
 ## Entropie von Dateibereichen (Blöcke von 4096 Bytes)
 
-> TODO
+### Zufällige Binärdaten
+
+![Entropie Zufallsdaten](entropy_graphs_blocks/random.png)
+
+### UTF-8-Text
+
+![Entropie UTF-8](entropy_graphs_blocks/utf8.png)
+
+### Ausführbare Datei
+
+![Entropie Sysinternals Process Explorer](entropy_graphs_blocks/binary.png)
+
+### ZIP
+
+![Entropie ZIP](entropy_graphs_blocks/zip_compressed.png)
+
+### Verschlüsseltes ZIP
+
+![Entropie verschlüsseltes ZIP](entropy_graphs_blocks/zip_compressed_encrypted.png)
+
+### Verschlüsseltes ZIP (Alt)
+
+![Entropie verschlüsseltes ZIP (Alt)](entropy_graphs_blocks/zip_compressed_encrypted_old.png)

@@ -45,7 +45,8 @@ class EntropyVisualizer:
         fig.canvas.manager.set_window_title("Entropy analysis results")
 
         # Add data
-        ax.bar(list(range(len(entropy_blocks))), [block.calculate_standardized_entropy() for block in entropy_blocks])
+        ax.bar(list(range(len(entropy_blocks))), [block.calculate_standardized_entropy() for block in entropy_blocks],
+               width=1.0)
 
         # Formatting
         ax.set_title(

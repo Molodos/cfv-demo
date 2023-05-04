@@ -25,6 +25,9 @@ Nutzung der Sysinternals Process Explorer exe (Version 16.43)
 
 ### Inhalt
 
+> In dieser Reihenfolge.\
+> Kann unter Linux mit `binwalk <datei>` überprüft werden (liefert auch Start-Bytes der einzelnen Dateien)
+
 - binary.exe
 - random.bin
 - utf8.txt
