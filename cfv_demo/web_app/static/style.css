@@ -1,0 +1,14 @@
+body {
+    background-color: #959595;
+}
+
+.bg-transparent-dark {
+    background-color: rgba(0, 0, 0, 0.35)
+}
+
+.body-container {
+    color: white;
+    margin-top: 24px;
+    border-radius: 8px;
+    padding: 24px 16px;
+}

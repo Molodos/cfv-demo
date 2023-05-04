@@ -2,7 +2,7 @@ __author__ = "Michael Weichenrieder"
 
 import matplotlib.pyplot as plt
 
-from entropy_analyzer.entropy_block import EntropyBlock
+from cfv_demo.entropy_analyzer.entropy_block import EntropyBlock
 
 
 class EntropyVisualizer:

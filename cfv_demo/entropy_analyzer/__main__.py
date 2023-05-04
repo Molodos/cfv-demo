@@ -2,11 +2,11 @@ __author__ = "Michael Weichenrieder"
 
 from os import path
 
-from entropy_analyzer.entropy_block import EntropyBlock
-from entropy_analyzer.entropy_visualizer import EntropyVisualizer
-from entropy_analyzer.file_entropy_calculator import FileEntropyCalculator
+from cfv_demo.entropy_analyzer.entropy_block import EntropyBlock
+from cfv_demo.entropy_analyzer.entropy_visualizer import EntropyVisualizer
+from cfv_demo.entropy_analyzer.file_entropy_calculator import FileEntropyCalculator
 
-demo_data_dir: str = path.join(path.dirname(path.realpath(__file__)), "..", "demo_data")
+demo_data_dir: str = path.join(path.dirname(path.realpath(__file__)), "..", "..", "demo_data")
 
 
 def show_overall_entropy(file_name: str):
