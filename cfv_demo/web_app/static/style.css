@@ -1,14 +1,8 @@
-body {
-    background-color: #959595;
+h5, .center {
+    text-align: center;
+    width: 100%;
 }
 
-.bg-transparent-dark {
-    background-color: rgba(0, 0, 0, 0.35)
-}
-
-.body-container {
-    color: white;
-    margin-top: 24px;
-    border-radius: 8px;
-    padding: 24px 16px;
+.btn-submit {
+    width: 100%;
 }

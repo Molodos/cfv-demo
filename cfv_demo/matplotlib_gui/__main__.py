@@ -3,7 +3,7 @@ __author__ = "Michael Weichenrieder"
 from os import path
 
 from cfv_demo.entropy_analyzer.entropy_block import EntropyBlock
-from cfv_demo.entropy_analyzer.entropy_visualizer import EntropyVisualizer
+from cfv_demo.matplotlib_gui.entropy_visualizer import EntropyVisualizer
 from cfv_demo.entropy_analyzer.file_entropy_calculator import FileEntropyCalculator
 
 demo_data_dir: str = path.join(path.dirname(path.realpath(__file__)), "..", "..", "demo_data")

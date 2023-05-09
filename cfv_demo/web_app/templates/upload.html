@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% include 'components/head.html' %}
+</head>
+
+<body>
+{% include 'components/navbar.html' %}
+<div class="container">
+    <br>
+    <h3>Analyze File Entropy</h3>
+    <hr>
+    <form method="POST" action="/upload" enctype="multipart/form-data">
+        <div class="mb-3">
+            <input class="form-control" type="file" name="file" id="file">
+            <label for="file" class="center text-body-secondary">(Max upload size: 16 MB)</label>
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-sm-4">
+                <button class="btn btn-dark btn-submit" type="submit">Upload File</button>
+            </div>
+        </div>
+    </form>
+</div>
+</body>
+</html>

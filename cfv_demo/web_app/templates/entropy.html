@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% include 'components/head.html' %}
+</head>
+
+<body>
+{% include 'components/navbar.html' %}
+<div class="container">
+    <br>
+    <h3>Entropy Results for "{{ data["file_name"] }}"</h3>
+    <hr>
+    <div class="row">
+        <div class="col-sm-12 mb-3">
+            <h5>Occurrences of bytes (Entropy: {{ data["overall_entropy"]["entropy"] }})</h5>
+            <canvas id="overall-entropy"></canvas>
+        </div>
+        <div class="col-sm-12 mb-3">
+            <h5>Entropy of file blocks (Block size: {{ data["blocked_entropy"]["block_size"] }} bytes)</h5>
+            <div class="center">(Block size is at least 4096 bytes for good significance. Last block is often not full and therefore less significant)</div>
+            <canvas id="blocked-entropy"></canvas>
+        </div>
+    </div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="/static/entropy.js"></script>
+<script>
+    makeGraph(
+        "overall-entropy",
+        {{ data["overall_entropy"]["bytes"] }},
+        "Byte (as int)",
+        {{ data["overall_entropy"]["byte_counts"] }},
+        "Count",
+        null,
+        "#fa4652",
+        0.9
+    );
+    makeGraph(
+        "blocked-entropy",
+        {{ data["blocked_entropy"]["block_ids"] }},
+        "Block",
+        {{ data["blocked_entropy"]["block_entropies"] }},
+        "Entropy",
+        1,
+        "#3a6ef2",
+        0.9
+    );
+</script>
+</body>
+</html>
