@@ -56,8 +56,8 @@ def entropy():
         return render_template("entropy.html", site="Entropy", data=data)
 
 
-if __name__ == "__main__":
+def start_web_app(port: int):
     """
     Init point of the web app
     """
-    app.run(port=8080)
+    app.run(port=port)
