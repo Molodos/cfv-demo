@@ -32,7 +32,7 @@ Nutzung der Sysinternals Process Explorer exe (Version 16.43)
 - random.bin
 - utf8.txt
 
-### ZIP
+### ZIP-Daten
 
 > Dateinamen können im Gegensatz zu z.B. RAR nicht verschlüsselt werden
 
@@ -48,16 +48,3 @@ Nutzung der Sysinternals Process Explorer exe (Version 16.43)
     - Kein Passwort
 - `compressed_encrypted.zip`
     - Passwortgeschützt mit Passwort "password"
-- `compressed_encrypted_old.zip`
-    - Passwortgeschützt mit Passwort "password"
-    - Option "Alte ZIP-2.0-Verschlüsselung"
-
-### GZip/7Zip
-
-#### Generelle Optionen
-
-> TODO
-
-#### Varianten
-
-> TODO

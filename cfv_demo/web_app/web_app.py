@@ -19,7 +19,7 @@ app.config['MAX_CONTENT_LENGTH'] = 16 * 1024 * 1024
 @app.route("/", methods=["GET"])
 def home():
     """
-    Main page
+    Main page (redirect to upload)
     """
     return redirect("/upload")
 
@@ -27,7 +27,7 @@ def home():
 @app.route("/upload", methods=["GET", "POST"])
 def upload():
     """
-    Upload page
+    Upload page which redirects to waiting page if upload post request is successful
     """
     if request.method == "POST":
         file_id: str = str(uuid.uuid4())
@@ -45,13 +45,13 @@ def upload():
 @app.route("/entropy", methods=["GET"])
 def entropy():
     """
-    Entropy results display page (or waiting)
+    Entropy results display page (has a waiting page with auto refresh if processing not done)
     """
     file_id: str = request.args.get("file_id")
-    if not path.isfile(path.join(RESULT_PATH, f"{file_id}.json")):
-        return render_template("process.html", site="Entropy", file_id=file_id)
+    file = path.join(RESULT_PATH, f"{file_id}.json")
+    if not path.isfile(file):
+        return render_template("process.html", site="Entropy")
     else:
-        file = path.join(RESULT_PATH, f"{file_id}.json")
         data: dict[str, Any] = json.load(open(file))
         return render_template("entropy.html", site="Entropy", data=data)
 

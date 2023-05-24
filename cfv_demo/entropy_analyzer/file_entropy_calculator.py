@@ -2,7 +2,7 @@ __author__ = "Michael Weichenrieder"
 
 from os import path
 
-from cfv_demo.entropy_analyzer.entropy_block import EntropyBlock
+from cfv_demo.entropy_analyzer import EntropyBlock
 
 
 class FileEntropyCalculator:
