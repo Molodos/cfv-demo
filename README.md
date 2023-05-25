@@ -1,7 +1,7 @@
 # CFV Demo
 
-Demos zur Studienarbeit mit dem Thema "Vergleich und Analyse von Kompressionsalgorithmen und deren
-Verschlüsselungsmethoden im Bezug auf die forensische Untersuchung"
+Demos zur Studienarbeit mit dem Thema "Informationsgewinnung aus verschlüsselten Archiv-Dateien und deren Auswertung im
+Bezug auf die forensische Untersuchung"
 
 ## Benutzung
 
