@@ -11,7 +11,7 @@ Verschlüsselungsmethoden im Bezug auf die forensische Untersuchung"
     ```
 2) Start der Applikation:
     ```shell
-    python -m cft_demo
+    python -m cfv_demo
     ```
 3) Aufruf der Web-App über http://localhost:8080
 
