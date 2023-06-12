@@ -17,4 +17,4 @@ Bezug auf die forensische Untersuchung"
 
 ## [Demo Daten](./docs/demo_data.md)
 
-## [Demos der Präsentation](./docs/presentation_demos.md)
+## [Demos der Präsentation](docs/presentation/presentation_demos.md)
