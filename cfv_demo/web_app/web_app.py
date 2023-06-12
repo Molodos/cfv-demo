@@ -60,4 +60,4 @@ def start_web_app(port: int):
     """
     Init point of the web app
     """
-    app.run(port=port)
+    app.run(port=port, host="0.0.0.0")
