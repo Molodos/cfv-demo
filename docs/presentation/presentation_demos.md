@@ -137,3 +137,5 @@ Session completed.
 ```
 
 Zu erkennen ist, dass beide (identischen) Passwörter geknackt wurden.
+
+## BONUS: Angriff auf ZipCrypto
