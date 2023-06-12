@@ -1,50 +1,52 @@
 # Demo Daten
 
+Im Folgenden wird erläutert, wie die Demo-Daten aufgebaut sind und warum die entsprechenden Kostellationen sinnvoll
+sind
+
 ## Basis-Daten
 
-### Zufälligen binären Daten
+Die folgenden Basis-Daten wurde ausgewählt, um daraus einige Test-Datensätze zu erstellen
 
-#### Generierung
+### /demo_data/example_data/exiftool.exe
 
-```shell
-head -c 1M /dev/urandom > random.bin
-```
+> TODO: Kurze Info über Herkunft und wieso die Datei interessant/relevant ist
 
-### UTF-8-Text
+### /demo_data/example_data/garden.dng
 
-#### Generierung
+> TODO: Kurze Info über Herkunft und wieso die Datei interessant/relevant ist
 
-Nutzung von [CyberChef](https://gchq.github.io/CyberChef/#recipe=Generate_Lorem_Ipsum(1048576,'Bytes')) (lädt kurz, bis
-sich Output befüllt) und Download des Ergebnisses als Datei
+### /demo_data/example_data/random_data.bin
 
-### Ausführbare Datei
+> TODO: Kurze Info über Herkunft und wieso die Datei interessant/relevant ist
 
-Nutzung der Sysinternals Process Explorer exe (Version 16.43)
+### /demo_data/example_data/rfc_793_4.txt
 
-## Komprimierte Dateien
+> TODO: Kurze Info über Herkunft und wieso die Datei interessant/relevant ist
 
-### Inhalt
+## Demo-Daten
 
-> In dieser Reihenfolge.\
-> Kann unter Linux mit `binwalk <datei>` überprüft werden (liefert auch Start-Bytes der einzelnen Dateien)
+Die folgenden Demo-Daten wurden mit 7-Zip aus den oben erläuterten Basis-Daten zusammengesetzt
 
-- binary.exe
-- random.bin
-- utf8.txt
+### /demo_data/dataset_1.zip
 
-### ZIP-Daten
+> TODO: Kurze Info über Kompressions-Parameter und Relevanz des Datensatzes
 
-> Dateinamen können im Gegensatz zu z.B. RAR nicht verschlüsselt werden
+### /demo_data/dataset_2.zip
 
-#### Generelle Optionen
+> TODO: Kurze Info über Kompressions-Parameter und Relevanz des Datensatzes
 
-- Verwendung von WinRAR
-- Komprimierungsmethode: Normal (default)
-- Wörterbuchgröße: 32kB (default)
+### /demo_data/dataset_3.zip
 
-#### Varianten
+> TODO: Kurze Info über Kompressions-Parameter und Relevanz des Datensatzes
 
-- `compressed.zip`
-    - Kein Passwort
-- `compressed_encrypted.zip`
-    - Passwortgeschützt mit Passwort "password"
+### /demo_data/dataset_4.zip
+
+> TODO: Kurze Info über Kompressions-Parameter und Relevanz des Datensatzes
+
+### /demo_data/dataset_5.zip
+
+> TODO: Kurze Info über Kompressions-Parameter und Relevanz des Datensatzes
+
+### /demo_data/dataset_6.zip
+
+> TODO: Kurze Info über Kompressions-Parameter und Relevanz des Datensatzes

@@ -17,4 +17,4 @@ Bezug auf die forensische Untersuchung"
 
 ## [Demo Daten](./docs/demo_data.md)
 
-## [Entropie Analysen](./docs/entropy_analysis.md)
+## [Demos der Präsentation](./docs/presentation_demos.md)
