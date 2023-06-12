@@ -138,4 +138,50 @@ Session completed.
 
 Zu erkennen ist, dass beide (identischen) Passwörter geknackt wurden.
 
-## BONUS: Angriff auf ZipCrypto
+## BONUS: Angriff auf unkomprimiertes ZipCrypto-Archiv
+
+Ziel dieses Angriffs ist das entschlüsseln eines ZIP Archivs ohne Kompression mittels eines Plaintext Angriffs auf ZipCrpto. 
+
+Als Demo-Datensatz wird das [dataset_4.zip](../../demo_data/dataset_4.zip) verwendet.
+
+Für den Angriff werden mind. 12, davon 8 zusammenhänend, Bytes bekannter Klartext inklusive Position benötigt. Für den Demo Datensatz wird 
+der Text "TRANSMISSION CONTROL PROTOCOL" mit dem Offset 301Bytes verwendet.
+Des Weiteren wird das Tool [bkcrack](https://github.com/kimci86/bkcrack) benötigt, dessen Executable für den weiteren Ablauf des Beispiels im selben 
+Verzeichnis wie der Demo-Datensatz liegen sollte.
+
+1. Schritt: schreiben des bekannten Textes in eine File im selben Verzeichnis wie bkcrack executable und der Demo-Datensatz
+``` shell
+echo -n ’TRANSMISSION CONTROL PROTOCOL’ > plain.txt
+```
+2. Schritt: ausführen des bkcrack befehls
+'-C' -> das Zielarchiv welches geknackt werden soll
+'-c' -> die File im Zielarchiv welche den Bekannten Text enthält
+'-p' -> die Datei mit dem bekannten Klartext
+'-o' -> der Offset des bekannten Klartext (optional, nicht benötigt, wenn klartext zu Filebeginn)
+``` shell
+./bkcrack -C dataset_4.zip -c rfc_793_4.txt -p plain.txt -o 301
+```
+Das Tool gibt im Erfolgsfall 3 interne Keys zurück.
+3. Schritt: 3 Möglichkeiten um fortzufahren
+3.1  Datei entschlüsseln und Inhalt in einer neuen Datei ablegen
+'-k' -> die gefundenen Keys aus dem vorherigen Schritt
+'-d' -> der Name für die Datei in welche der entschlüsselte Inhalt geschrieben werden soll
+``` shell
+./bkcrack -C dataset_4.zip -c rfc_793_4.txt -k Key1 Key2 Key3 -d entschluesselte_daten
+```
+3.2 Inhalte des Zielarchivs in ein neues Archiv mit neuen Passwort kopieren
+'-k' -> die Keys aus Schritt 2
+'-U' -> der Name des neuen Archivs mit neuem Passwort
+``` shell
+./bkcrack -C dataset_4.zip -k Key1 Key2 Key2 -U neues_archiv.zip neues_pw
+```
+3.3 Passwort des Zielarchivs mit Brute Force herausfinden
+Hier kann man sich über Kombinationen von Obergrenze sowie den Optionen für die Zeichen an das PAsswort annähern.
+'-r' -> Teil 1: Obergrenze des Zeichen im Passwort
+        Teil 2: Optionen für die Zeichen des Passworts 
+                ?b = alle Bytes 0-255
+                ?p = alle druckbaren Bytes
+                ?a = alle alphanumerischen Bytes
+``` shell
+./bkcrack -C dataset_4.zip -k Key1 Key2 Key3 -r 9 ?p
+```
