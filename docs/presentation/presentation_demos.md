@@ -2,11 +2,23 @@
 
 ## Entropie Analyse Tool
 
-> TODO: Add demo stuff
+Ziele ist die Nutzung des Entropie Analyse Tools, um die Entropie einer datei zu analysieren.
 
-## Verwendeter Algorithmus und Parameter asu ZIP-Archiv gewinnen
+Als Demo-Daten wird die Datei [exiftool.exe](../../demo_data/example_data/exiftool.exe) verwendet.
 
-> TODO: Most likely remove
+### 1. Installation und Start des Tools
+
+Befehl im Stammverzeichnis des Repositories ausführen:
+
+```shell
+docker-compose up -d
+```
+
+### 2. Analyse der Datei
+
+- Das Tool unter http://localhost:8080 aufrufen und die datei hochladen
+- Nach einer kurzen Wartezeit für die analyse wird man auf eine Ergebnisseite weitergeleitet, welche die
+  Analyse-Ergebnisse grafisch aufbereitet
 
 ## Analyse eines ZIP-Archivs auf seine Herkunft
 
@@ -140,71 +152,92 @@ Zu erkennen ist, dass beide (identischen) Passwörter geknackt wurden.
 
 ## BONUS: Angriff auf unkomprimiertes ZipCrypto-Archiv
 
-Ziel dieses Angriffs ist das entschlüsseln eines mit ZipCrypto verschlüsselten ZIP Archivs ohne Kompression mittels eines Plaintext Angriffs auf ZipCrpto. 
+Ziel dieses Angriffs ist das Entschlüsseln eines mit ZipCrypto verschlüsselten ZIP Archivs ohne Kompression mittels
+eines Plaintext Angriffs auf ZipCrypto.
 
 Als Demo-Datensatz wird das [dataset_4.zip](../../demo_data/dataset_4.zip) verwendet.
 
-Für den Angriff werden mind. 12, davon 8 zusammenhänend, Bytes bekannter Klartext inklusive Position benötigt. Für den Demo Datensatz wird 
+Für den Angriff werden mind. 12, davon 8 zusammenhängend, Bytes bekannter Klartext inklusive Position benötigt. Für den
+Demo-Datensatz wird
 der Text "TRANSMISSION CONTROL PROTOCOL" mit dem Offset 301Bytes verwendet.
-Des Weiteren wird das Tool [bkcrack](https://github.com/kimci86/bkcrack) benötigt, dessen Executable für den weiteren Ablauf des Beispiels im selben 
+Des Weiteren wird das Tool [bkcrack](https://github.com/kimci86/bkcrack) benötigt, dessen Executable für den weiteren
+Ablauf des Beispiels im selben
 Verzeichnis wie der Demo-Datensatz liegen sollte.
 
 #### 1. Schritt: schreiben des bekannten Textes in eine File im selben Verzeichnis wie bkcrack executable und der Demo-Datensatz
+
 ``` shell
 echo -n ’TRANSMISSION CONTROL PROTOCOL’ > plain.txt
 ```
 
 #### 2. Schritt: ausführen des bkcrack befehls
+
 '-C' -> das Zielarchiv welches geknackt werden soll\
 '-c' -> die File im Zielarchiv welche den Bekannten Text enthält\
 '-p' -> die Datei mit dem bekannten Klartext\
-'-o' -> der Offset des bekannten Klartext (optional, nicht benötigt, wenn klartext zu Filebeginn)\
+'-o' -> der Offset des bekannten Klartext (optional, nicht benötigt, wenn klartext zu Dateibeginn)\
+
 ``` shell
 ./bkcrack -C dataset_4.zip -c rfc_793_4.txt -p plain.txt -o 301
 ```
+
 Das Tool gibt im Erfolgsfall 3 interne Keys zurück.
 
 #### 3. Schritt: 3 Möglichkeiten um fortzufahren
-##### 3.1  Datei entschlüsseln und Inhalt in einer neuen Datei ablegen
+
+##### 3.1 Datei entschlüsseln und Inhalt in einer neuen Datei ablegen
+
 '-k' -> die gefundenen Keys aus dem vorherigen Schritt\
 '-d' -> der Name für die Datei in welche der entschlüsselte Inhalt geschrieben werden soll\
+
 ``` shell
 ./bkcrack -C dataset_4.zip -c rfc_793_4.txt -k Key1 Key2 Key3 -d entschluesselte_daten
 ```
 
-##### 3.2 Inhalte des Zielarchivs in ein neues Archiv mit neuen Passwort kopieren
+##### 3.2 Inhalte des Zielarchivs in ein neues Archiv mit neuem Passwort kopieren
+
 '-k' -> die Keys aus Schritt 2\
 '-U' -> der Name des neuen Archivs mit neuem Passwort\
+
 ``` shell
 ./bkcrack -C dataset_4.zip -k Key1 Key2 Key2 -U neues_archiv.zip neues_pw
 ```
 
 ##### 3.3 Passwort des Zielarchivs mit Brute Force herausfinden
+
 Hier kann man sich über Kombinationen von Obergrenze sowie den Optionen für die Zeichen an das Passwort annähern.
-'-r' -> Teil 1: Obergrenze des Zeichen im Passwort\
-        Teil 2: Optionen für die Zeichen des Passworts\ 
-                ?b = alle Bytes 0-255\
-                ?p = alle druckbaren Bytes\
-                ?a = alle alphanumerischen Bytes\
+'-r' -> Teil 1: Obergrenze der Zeichen im Passwort\
+Teil 2: Optionen für die Zeichen des Passworts\
+?b = alle Bytes 0-255\
+?p = alle druckbaren Bytes\
+?a = alle alphanumerischen Bytes\
+
 ``` shell
 ./bkcrack -C dataset_4.zip -k Key1 Key2 Key3 -r 9 ?p
 ```
+
 ## BONUS 2: Angriff auf komprimiertes ZipCrypto Archiv
 
-Ziel dieses Angriffs ist das entschlüsseln eines komprimierten und mit ZipCrypto verschlüsselten ZIP Archivs mittels eines Plaintext Angriffs auf ZipCrpto. 
+Ziel dieses Angriffs ist das Entschlüsseln eines komprimierten und mit ZipCrypto verschlüsselten ZIP Archivs mittels
+eines Plaintext Angriffs auf ZipCrypto.
 
 Als Demo-Datensatz kann das [dataset_3.zip](../../demo_data/dataset_3.zip) verwendet werden.
 
-Vorrausetzung: Es wird eine vollständige Datei aus dem Archiv benötigt, z.b Logos, Libraries, Lizenznotes, etc
+Voraussetzung: Es wird eine vollständige Datei aus dem Archiv benötigt, z.B. Logos, Libraries, Lizenz-Notizen, etc
 
 Durchführung:
-Die bekannte Datei muss mit verschiedenen Kompressionsalgorithmen und Parametern komprimiert werden. Für jedes der Komprimate wird mit folgendem Befehl 
-ausprobiert ob das Archiv geknackt werden kann, wenn es nicht erfolgreich war, muss ein anderer Kompressionsalgorithmus und/oder Kombination von Parametern verwendet werden.
+Die bekannte Datei muss mit verschiedenen Kompressionsalgorithmen und Parametern komprimiert werden. Für jedes der
+Komprimate wird mit folgendem Befehl
+ausprobiert, ob das Archiv geknackt werden kann, wenn es nicht erfolgreich war, muss ein anderer Kompressionsalgorithmus
+und/oder Kombination von Parametern verwendet werden.
 '-C' -> das Zielarchiv welches geknackt werden soll\
 '-c' -> die File im Zielarchiv welche den Bekannten Text enthält\
-'-P' -> das Archiv welches aus der bekannten Datei ezeugt wurde\
+'-P' -> das Archiv, welches aus der bekannten Datei erzeugt wurde\
 '-p' -> die bekannte und komprimierte Datei innerhalb des Archivs aus '-P'\
+
 ``` shell
 ./bkcrack -C dataset_3.zip -c rfc_793_4.txt -P known_archive.zip -p rfc_793_4.txt
 ```
-Wenn der Angriff erfolreich war, werden 3 Keys ausgegeben, mit welchen wie bei Schritt 3 des vorherigen Angriffs fortgefahren werden kann.
+
+Wenn der Angriff erfolgreich war, werden 3 Keys ausgegeben, mit welchen wie bei Schritt 3 des vorherigen Angriffs
+fortgefahren werden kann.
